@@ -1,22 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PosComponent } from "./pos/pos.component";
-import { KitchenComponent } from "./kitchen/kitchen.component";
-import { OrderService } from './services/order.service';
-import { Order } from './models/order';
-import { DatePipe } from '@angular/common';
+import { RestaurantComponent } from "./restaurant/restaurant.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PosComponent, KitchenComponent, DatePipe],
+  imports: [RouterOutlet, RestaurantComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'fastfood';
-  orderService = inject(OrderService);
-  onDeliver(order: Order){
-    this.orderService.removeOrder(order);
-  }
 }

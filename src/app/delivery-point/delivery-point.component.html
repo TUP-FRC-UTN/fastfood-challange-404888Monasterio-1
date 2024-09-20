@@ -1,1 +1,25 @@
-<p>delivery-point works!</p>
+<div class="card">
+  <h5 class="card-header">Pedidos listos para entregar</h5>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Acccion</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orderService.getOrdersReady(); track $index) {
+          <tr>
+            <th scope="row">{{order.number}}</th>
+            <td>{{order.name}}</td>
+            <td>
+              <button class="btn btn-outline-primary" (click)="onDeliver(order)">Entregar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
