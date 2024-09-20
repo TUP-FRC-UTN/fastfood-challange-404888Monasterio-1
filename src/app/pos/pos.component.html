@@ -1,0 +1,26 @@
+<div class="card">
+  <h5 class="card-header">Componente Point of Sell - POS</h5>
+  <div class="card-body">
+    <form #form="ngForm" (submit)="onSubmit(form)">
+      <div class="mb-3">
+        <label for="inputName" class="form-label">
+          Nombre
+          @if (name.invalid) {
+            <span class="text-danger fw-bold">*</span>
+          }
+        </label>
+        <input type="text" class="form-control" id="inputName" ngModel name="name" required autocomplete="off" #name="ngModel">
+      </div>
+      <div class="mb-3">
+        <label for="inputDescription" class="form-label">
+          Pedido
+          @if (description.invalid) {
+            <span class="text-danger fw-bold">*</span>
+          }
+        </label>
+        <input type="text" class="form-control" id="inputDescription" ngModel name="description" required autocomplete="off" #description="ngModel">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="form.pristine || form.invalid">Ordenar</button>
+    </form>
+  </div>
+</div>

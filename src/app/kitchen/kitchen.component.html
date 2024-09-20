@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Componente Cocina</h5>
+  </div>
+  <div class="card-body">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h5 class="card-title">Pendiente de Cocinar</h5>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Número</th>
+              <th scope="col">Pedido</th>
+              <th scope="col">Acccion</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of orderService.getOrdersUnready(); track $index) {
+              <tr>
+                <th scope="row">{{order.number}}</th>
+                <td>{{order.description}}</td>
+                <td>
+                  <button class="btn btn-outline-primary" (click)="onCookClicked(order)" [disabled]="orderService.getCookingOrder() != undefined">Cocinar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    @if (orderService.getCookingOrder() != undefined) {
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Pedido en Acción</h5>
+        </div>
+        <div class="card-body">
+          <p>
+            <span class="fw-bolder">
+              Número:
+            </span>
+            {{orderService.getCookingOrder()?.number}}
+          </p>
+          <p>
+            <span class="fw-bolder">
+              Nombre:
+            </span>
+            {{orderService.getCookingOrder()?.name}}
+          </p>
+          <p>
+            <span class="fw-bolder">
+              Descripción:
+            </span>
+            {{orderService.getCookingOrder()?.description}}
+          </p>
+          <button class="btn btn-primary" (click)="onFinishCook()">Pedido terminado!</button>
+        </div>
+      </div>
+    }
+</div>
